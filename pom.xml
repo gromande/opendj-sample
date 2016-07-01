@@ -76,9 +76,6 @@
 				<!-- Only run integration tests -->
 				<configuration>
 					<groups>com.groman.opendj.dao.IntegrationTest</groups>
-					<configuration>
-						<excludedGroups>com.groman.opendj.dao.IntegrationTest</excludedGroups>
-					</configuration>
 				</configuration>
 				<executions>
 					<execution>
@@ -117,6 +114,9 @@
 								    <keep>true</keep>
 								    <nameAndTag>groman/opendj-test:1.0</nameAndTag>
 								    <artifacts>
+								        <artifact>
+                                            <file>${project.basedir}/src/test/resources/opendj/opendj.zip</file>
+                                        </artifact>
 								        <artifact>
 								            <file>${project.basedir}/src/test/resources/opendj/99-custom-schema.ldif</file>
 								        </artifact>

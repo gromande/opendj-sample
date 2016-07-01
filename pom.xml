@@ -64,9 +64,6 @@
 				<!-- Exclude integration tests -->
 				<configuration>
 					<excludedGroups>com.groman.opendj.dao.IntegrationTest</excludedGroups>
-					<systemPropertyVariables>
-						<opendj.resources.dir>${baseDir}/src/opendj/</opendj.resources.dir>
-					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 			<plugin>

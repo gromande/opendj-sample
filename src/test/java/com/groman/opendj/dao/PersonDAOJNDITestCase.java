@@ -1,34 +1,27 @@
 package com.groman.opendj.dao;
 
 import static org.junit.Assert.*;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.groman.opendj.guice.JNDILdapModule;
 import com.groman.opendj.model.Person;
-import com.groman.opendj.service.LdapService;
 
-public abstract class AbstractPersonDAOTestCase {
+@Category(IntegrationTest.class)
+public class PersonDAOJNDITestCase {
     
-    private LdapService service;
     private PersonDAO dao;
-    
-    protected abstract Injector getGuiceInjector();
-    
+
     @Before
     public void setUp() {
-        Injector injector = getGuiceInjector();
-        service = injector.getInstance(LdapService.class);
-        service.start();
+        Injector injector = Guice.createInjector(new JNDILdapModule());
         dao = injector.getInstance(PersonDAO.class);
     }
     
-    @After
-    public void tearDown() {
-        service.stop();
-    }
-
     @Test
     public void testUpdateEmail() {
         Person person = PersonTestUtil.generateRandomPerson();
